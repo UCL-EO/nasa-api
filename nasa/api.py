@@ -15,8 +15,9 @@ def api_get(url, payload):
     from collections import OrderedDict
     payload = OrderedDict()
     payload['api_key'] = api_key()
-    for k, v in payload.items() if v:
-        payload[k] = v
+    for k, v in payload.items():
+        if v:
+            payload[k] = v
     response = requests.get(url, params=payload)
     if response.status_code == 429:
         raise RateLimitException('You have exceeded your rate limit')
