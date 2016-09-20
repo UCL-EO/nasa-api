@@ -9,13 +9,13 @@ class NasaApiException(Exception):
 class RateLimitException(NasaApiException):
     """Raised when you have exceeded your rate limit"""
 
-def api_get(url, payload):
+def api_get(url, payload_in):
     # Lewis: use ordered dictionary
     # to make sure api key is first
     from collections import OrderedDict
     payload = OrderedDict()
     payload['api_key'] = api_key()
-    for k, v in payload.items():
+    for k, v in payload_in.items():
         if v:
             payload[k] = v
     response = requests.get(url, params=payload)
