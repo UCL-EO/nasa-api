@@ -16,7 +16,7 @@ def address(address, begin=None, end=None):
         'end': validations.optional_int(end),
     }
     response = api.api_get(
-        'https://api.data.gov/nasa/planetary/earth/temperature/address',
+        'https://api.data.gov/planetary/earth/temperature/address',
         payload,
     )
     return [Temperature.from_response(r) for r in response['results']]
@@ -37,7 +37,7 @@ def coordinates(lat, lon, begin=None, end=None):
         'end': validations.optional_int(end),
     }
     response = api.api_get(
-        'https://api.data.gov/nasa/planetary/earth/temperature/coords',
+        'https://api.data.gov/planetary/earth/temperature/coords',
         payload,
     )
     return [Temperature.from_response(r) for r in response['results']]
